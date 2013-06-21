@@ -6,6 +6,8 @@ version          '0.1.0'
 maintainer       "Christophe Furmaniak"
 maintainer_email "christophe.furmaniak@gmail.com"
 depends			 "yum"
+depends			 "ntp"
+depends			 "java"
 recipe 			 "opentsdb", "Installs HBase and OpenTSDB from source"
 
 %w{ centos }.each do |os|
