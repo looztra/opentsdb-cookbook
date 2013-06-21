@@ -1,5 +1,9 @@
 # opentsdb cookbook
 
+Goal: from a Vagrant oriented repo (https://github.com/looztra/opentsdb-vagrant-box) to a standalone Chef cookbook managed by Berkshelf
+
+!!This is a work in progress!!
+
 # Requirements
 
 # Usage
@@ -10,4 +14,4 @@
 
 # Author
 
-Author:: YOUR_NAME (<YOUR_EMAIL>)
+Author:: Christophe Furmaniak (christophe.furmaniak+github@gmail.com)
