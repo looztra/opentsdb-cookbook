@@ -1,8 +1,6 @@
 # opentsdb cookbook
 
-Goal: from a Vagrant oriented repo (https://github.com/looztra/opentsdb-vagrant-box) to a standalone Chef cookbook managed by Berkshelf
-
-!!This is a work in progress!!
+Install and run [OpenTSDB](http://opentsdb.net/ "OpenTSDB") from source.
 
 # Requirements
 
