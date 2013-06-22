@@ -56,12 +56,12 @@ remote_file "#{node['opentsdb']['tgz_rootdir']}/hbase-#{node['opentsdb']['hbase_
 end
 
 execute "tar" do
-	cwd "#{node['opentsdb']['hbase_installdir']}"
+	cwd node['opentsdb']['hbase_installdir']
 	command "tar xzf #{node['opentsdb']['tgz_rootdir']}/hbase-#{node['opentsdb']['hbase_version']}.tar.gz"
 	creates "#{node['opentsdb']['hbase_installdir']}/hbase-#{node['opentsdb']['hbase_version']}"
 end
 
-link "#{hbase_home}" do
+link hbase_home do
   to "#{node['opentsdb']['hbase_installdir']}/hbase-#{node['opentsdb']['hbase_version']}"
 end
 
@@ -85,7 +85,7 @@ end
 if node['opentsdb']['build_from_src']
 	log 'Building OpentTSDB from source'
 	execute "git clone opentsdb" do
-		cwd "#{node['opentsdb']['opentsdb_installdir']}"
+		cwd node['opentsdb']['opentsdb_installdir']
 		command "git clone #{node['opentsdb']['opentsdb_repo']}"
 		creates "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
 	end	
