@@ -9,7 +9,8 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "opentsdb-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "Berkshelf-CentOS-6.3-x86_64-minimal"
+  #config.vm.box = "Berkshelf-CentOS-6.3-x86_64-minimal"
+  config.vm.box = "opscode-centos-6.4-chef-11"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -72,10 +73,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
-      :mysql => {
-        :server_root_password => 'rootpass',
-        :server_debian_password => 'debpass',
-        :server_repl_password => 'replpass'
+      :java => {
+        :install_flavor => 'openjdk',
+        :jdk_version => '7',
       }
     }
 
