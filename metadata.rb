@@ -8,7 +8,11 @@ maintainer_email "christophe.furmaniak@gmail.com"
 depends			 "yum"
 depends			 "ntp"
 depends			 "java"
-recipe 			 "opentsdb", "Installs HBase and OpenTSDB from source"
+recipe 			 "default", "see install recipe"
+recipe 			 "prepare", "Install and setup requirements (ntp, package manager, java)"
+recipe 			 "install", "Install HBase and OpenTSDB from source"
+recipe			 "opentsdb", "Start tsd daemon"
+recipe			 "tcollector", "Install and start tcollector"
 
 %w{ centos }.each do |os|
   supports os
