@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/looztra/opentsdb-cookbook.png)](http://travis-ci.org/looztra/opentsdb-cookbook)
+
 # opentsdb cookbook
 
 Install and run [OpenTSDB](http://opentsdb.net/ "OpenTSDB") from source.
