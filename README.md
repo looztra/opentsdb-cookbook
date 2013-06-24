@@ -4,6 +4,8 @@ Install and run [OpenTSDB](http://opentsdb.net/ "OpenTSDB") from source.
 
 # Requirements
 
+Only supports rehl family for the moment
+
 # Usage
 
 # Attributes
