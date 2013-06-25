@@ -38,7 +38,7 @@ directory node['opentsdb']['hbase_rootdir'] do
 	action :create
 end
 
-directory node['opentsdb']['tsd_tmpdir'] do
+directory node['opentsdb']['tsdb_cachedir'] do
 	action :create
 end
 
@@ -86,7 +86,7 @@ if node['opentsdb']['build_from_src']
 	log 'Building OpentTSDB from source'
 	execute "git clone opentsdb" do
 		cwd node['opentsdb']['opentsdb_installdir']
-		command "git clone #{node['opentsdb']['opentsdb_repo']}"
+		command "git clone -b #{node['opentsdb']['branch']} #{node['opentsdb']['repo']}"
 		creates "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
 	end	
 	execute "build opentsdb" do

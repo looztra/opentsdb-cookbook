@@ -17,10 +17,19 @@
 tsdb_home = "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
 
 log "Starting opentsdb if not already running"
-execute "starting tsdb" do 
-	cwd tsdb_home
-	command "./build/tsdb tsd --port=#{node['opentsdb']['tsdb_port']} --staticroot=build/staticroot --cachedir=/tmp --auto-metric> /var/log/tsdb.log 2>&1 &"
-	not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
+if node['opentsdb']['branch'] == 'master'
+	execute "starting tsdb (master/v1.x)" do 
+		cwd tsdb_home
+		command "./build/tsdb tsd --port=#{node['opentsdb']['tsdb_port']} --staticroot=build/staticroot --cachedir=#{node['opentsdb']['tsdb_cachedir']} --auto-metric> /var/log/tsdb.log 2>&1 &"
+		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
+	end
 end
+if node['opentsdb']['branch'] == 'next'
+	log "todo"
+	execute "starting tsdb (next/v2.x)" do 
+		cwd tsdb_home
+		#command "./build/tsdb tsd --port=#{node['opentsdb']['tsdb_port']} --staticroot=build/staticroot --cachedir=#{node['opentsdb']['tsdb_cachedir']} --auto-metric> /var/log/tsdb.log 2>&1 &"
 
-
+		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
+	end
+end
