@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/looztra/opentsdb-cookbook.png)](http://travis-ci.org/looztra/opentsdb-cookbook)
+[![Build Status](https://travis-ci.org/looztra/opentsdb-cookbook.png?branch=master)](https://travis-ci.org/looztra/opentsdb-cookbook)
 
 # opentsdb cookbook
 
