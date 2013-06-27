@@ -14,22 +14,32 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+include_recipe "opentsdb::init_opentsdb"
+
+
 tsdb_home = "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
 
 log "Starting opentsdb if not already running"
-if node['opentsdb']['branch'] == 'master'
+
+case node['opentsdb']['branch']
+when 'master'
+	log "Starting opentsdb (master)"
 	execute "starting tsdb (master/v1.x)" do 
 		cwd tsdb_home
 		command "./build/tsdb tsd --port=#{node['opentsdb']['tsdb_port']} --staticroot=build/staticroot --cachedir=#{node['opentsdb']['tsdb_cachedir']} --auto-metric> /var/log/tsdb.log 2>&1 &"
 		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
 	end
-end
-if node['opentsdb']['branch'] == 'next'
-	log "todo"
+when /^next/
+	log "Starting opentsdb (any next branch)"
+	template "#{tsdb_home}/opentsdb.conf" do
+		source "opentsdb.conf.erb"
+		mode "0644"
+	end
 	execute "starting tsdb (next/v2.x)" do 
 		cwd tsdb_home
-		#command "./build/tsdb tsd --port=#{node['opentsdb']['tsdb_port']} --staticroot=build/staticroot --cachedir=#{node['opentsdb']['tsdb_cachedir']} --auto-metric> /var/log/tsdb.log 2>&1 &"
-
+		command "./build/tsdb tsd --config #{tsdb_home}/opentsdb.conf > /var/log/tsdb.log 2>&1 &"
 		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
 	end
+else
+	log "Unsupported branch value [#{node['opentsdb']['branch']}], doing nothin"	
 end
