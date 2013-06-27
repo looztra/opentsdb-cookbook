@@ -20,6 +20,17 @@
 
 include_recipe 'opentsdb::prepare'
 
+if node['opentsdb']['proxy']['enabled']
+	log "Setting proxy configuration for git"	
+	custom_env = Hash.new
+	custom_env['http_proxy'] = node['opentsdb']['proxy']['http_proxy']
+	custom_env['https_proxy'] = node['opentsdb']['proxy']['https_proxy']	
+else
+	log "No proxy configuration"
+	custom_env = Hash.new
+end
+
+
 hbase_home = "#{node['opentsdb']['hbase_installdir']}/hbase"
 
 package_list = Array.new(node['opentsdb']['tools'])
@@ -88,11 +99,13 @@ if node['opentsdb']['build_from_src']
 		cwd node['opentsdb']['opentsdb_installdir']
 		command "git clone -b #{node['opentsdb']['branch']} #{node['opentsdb']['repo']}"
 		creates "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
+		environment custom_env
 	end	
 	execute "build opentsdb" do
 		cwd "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
 		command "./build.sh"
 		not_if "test -f #{node['opentsdb']['opentsdb_installdir']}/opentsdb/build/tsdb-*.jar"
+		environment custom_env
 	end
 else
 	log 'Skipping the build of OpentTSDB from source'
@@ -104,9 +117,6 @@ execute "create OpenTSDB hbase tables" do
 	cwd "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
 	command "env COMPRESSION=none HBASE_HOME=#{node['opentsdb']['hbase_installdir']}/hbase ./src/create_table.sh"
 	only_if "ps auxwww | grep 'org.apache.hadoop.hbase.master.HMaster start' | grep -v grep"
-	not_if "test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid"
+	not_if "test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid"	
 end
-
-
-
 

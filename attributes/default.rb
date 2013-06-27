@@ -16,11 +16,16 @@ default['opentsdb']['tsdb_autometrics'] = true
 # tcollector stuff
 default['opentsdb']['tcollector_repo'] = 'https://github.com/OpenTSDB/tcollector.git'
 default['opentsdb']['tcollector_installdir'] = '/usr/local'
+# proxy stuff
+default['opentsdb']['proxy']['enabled'] = false
+default['opentsdb']['proxy']['http_proxy'] = nil
+default['opentsdb']['proxy']['https_proxy'] = nil
 # default tools
 default['opentsdb']['tools'] = ["nc","htop","sysstat"]
 # packaging tool 
 if platform_family?("rhel")
   default['opentsdb']['packager_recipes'] = ['yum','yum::epel']
 end
+
 
 
