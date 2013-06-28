@@ -41,5 +41,5 @@ when /^next/
 		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
 	end
 else
-	log "Unsupported branch value [#{node['opentsdb']['branch']}], doing nothin"	
+	log "Unsupported branch value [#{node['opentsdb']['branch']}], doing nothing"	
 end
