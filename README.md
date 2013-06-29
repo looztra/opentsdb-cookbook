@@ -18,7 +18,7 @@ Only supports rehl family for the moment. Running on ubuntu should only need som
 - [Berkshelf](http://berkshelf.com/) is your friend
     - 'berks install' or
     - use the 'berkshelf vagrant plugin' and the recipes will be fetched during the vagrant provision step
-- This cookbook can install and run opentsdb 1.1 or next/2.0. To choose between the two, just set the matching branch value for your node (**node['opentsdb']['tsdb_branch']**)
+- This cookbook can install and run opentsdb 1.1 or next/2.0. To choose between the two of them, just set the matching branch value for your node (__node['opentsdb']['tsdb_branch']__)
 - A typical chef run would include **opentsdb::install** and **opentsdb::start** recipes that will install and start: *HBASE*, *Opentsdb* and *tcollector* and will start collecting some basic metrics (including opentsdb own metrics)
 
 # Attributes
