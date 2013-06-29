@@ -27,7 +27,7 @@ tsd.network.port = <%= node['opentsdb']['tsdb_port'] %>
 # ----------- HTTP -----------
 # The location of static files for the HTTP GUI interface.
 # *** REQUIRED ***
-tsd.http.staticroot = <%= node['opentsdb']['opentsdb_installdir'] %>/opentsdb/build/staticroot
+tsd.http.staticroot = <%= node['opentsdb']['tsdb_installdir'] %>/opentsdb/build/staticroot
 
 # Where TSD should write it's cache files to
 # *** REQUIRED ***

@@ -39,15 +39,15 @@ end
 if node['opentsdb']['build_from_src']
 	log 'Building OpentTSDB from source'
 	execute "git clone opentsdb" do
-		cwd node['opentsdb']['opentsdb_installdir']
-		command "git clone -b #{node['opentsdb']['branch']} #{node['opentsdb']['repo']}"
-		creates "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
+		cwd node['opentsdb']['tsdb_installdir']
+		command "git clone -b #{node['opentsdb']['tsdb_branch']} #{node['opentsdb']['tsdb_repo']}"
+		creates "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
 		environment custom_env
 	end	
 	execute "build opentsdb" do
-		cwd "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
+		cwd "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
 		command "./build.sh"
-		not_if "test -f #{node['opentsdb']['opentsdb_installdir']}/opentsdb/build/tsdb-*.jar"
+		not_if "test -f #{node['opentsdb']['tsdb_installdir']}/opentsdb/build/tsdb-*.jar"
 		environment custom_env
 	end
 else
