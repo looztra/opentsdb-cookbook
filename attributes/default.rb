@@ -4,7 +4,7 @@ default['opentsdb']['tgz_rootdir'] = '/tmp/tgz'
 # HBase stuff
 default['opentsdb']['hbase_rootdir'] = '/var/spool/tsdhbase'
 default['opentsdb']['hbase_installdir'] = '/usr/local'
-default['opentsdb']['hbase_version'] = '0.94.8'
+default['opentsdb']['hbase_version'] = '0.94.10'
 # OpenTSDB stuff
 default['opentsdb']['opentsdb_installdir'] = '/usr/local'
 default['opentsdb']['tsdb_cachedir']='/var/cache/tsdb'
