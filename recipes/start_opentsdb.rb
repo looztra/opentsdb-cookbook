@@ -17,11 +17,11 @@
 include_recipe "opentsdb::init_opentsdb"
 
 
-tsdb_home = "#{node['opentsdb']['opentsdb_installdir']}/opentsdb"
+tsdb_home = "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
 
 log "Starting opentsdb if not already running"
 
-case node['opentsdb']['branch']
+case node['opentsdb']['tsdb_branch']
 when 'master'
 	log "Starting opentsdb (master)"
 	execute "starting tsdb (master/v1.x)" do 
@@ -41,5 +41,5 @@ when /^next/
 		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
 	end
 else
-	log "Unsupported branch value [#{node['opentsdb']['branch']}], doing nothin"	
+	log "Unsupported branch value [#{node['opentsdb']['tsdb_branch']}], doing nothing"	
 end
