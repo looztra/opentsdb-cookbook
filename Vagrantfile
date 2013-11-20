@@ -10,16 +10,16 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
   # Uncomment the following to use centos
-  # config.vm.box = "opscode-centos-6.4-chef-11"
+  config.vm.box = "opscode-centos-6.4-chef-11"
   # Uncomment the following to use ubuntu
-  config.vm.box = "ubuntu12-omnibuschef"
+  # config.vm.box = "ubuntu12-omnibuschef"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # Uncomment the following to use centos
-  # config.vm.box_url = "https://dl.dropbox.com/u/31081437/Berkshelf-CentOS-6.3-x86_64-minimal.box"
+  config.vm.box_url = "https://dl.dropbox.com/u/31081437/Berkshelf-CentOS-6.3-x86_64-minimal.box"
   # Uncomment the following to use ubuntu
-  config.vm.box_url = "https://s3.amazonaws.com/gsc-vagrant-boxes/ubuntu-12.04-omnibus-chef.box"
+  # config.vm.box_url = "https://s3.amazonaws.com/gsc-vagrant-boxes/ubuntu-12.04-omnibus-chef.box"
 
   # Every Vagrant virtual environment requires a box to build off of.
 
