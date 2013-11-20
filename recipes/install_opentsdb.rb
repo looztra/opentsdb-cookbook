@@ -50,6 +50,14 @@ if node['opentsdb']['build_from_src']
 		not_if "test -f #{node['opentsdb']['tsdb_installdir']}/opentsdb/build/tsdb-*.jar"
 		environment custom_env
 	end
+	execute "initialize database" do
+		cwd "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
+		command "./src/create_table.sh"
+		custom_env['COMPRESSION']='NONE'
+		custom_env['HBASE_HOME']='/usr/local/hbase'
+		not_if "echo 'list' | /usr/local/hbase/bin/hbase shell | grep tsdb-uid"
+		environment custom_env
+	end
 else
 	log 'Skipping the build of OpentTSDB from source'
 end
