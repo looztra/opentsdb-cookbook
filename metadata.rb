@@ -6,6 +6,7 @@ version          '0.1.0'
 maintainer       "Christophe Furmaniak"
 maintainer_email "christophe.furmaniak@gmail.com"
 depends			 "yum"
+depends			 "apt"
 depends			 "ntp"
 depends			 "java"
 recipe 			 "default", "see install recipe"

@@ -9,12 +9,23 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "opentsdb-berkshelf"
 
   # Every Vagrant virtual environment requires a box to build off of.
-  #config.vm.box = "Berkshelf-CentOS-6.3-x86_64-minimal"
+  # Uncomment the following to use centos
   config.vm.box = "opscode-centos-6.4-chef-11"
+  # Uncomment the following to use ubuntu
+  # config.vm.box = "ubuntu12-omnibuschef"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
+  # Uncomment the following to use centos
   config.vm.box_url = "https://dl.dropbox.com/u/31081437/Berkshelf-CentOS-6.3-x86_64-minimal.box"
+  # Uncomment the following to use ubuntu
+  # config.vm.box_url = "https://s3.amazonaws.com/gsc-vagrant-boxes/ubuntu-12.04-omnibus-chef.box"
+
+  # Every Vagrant virtual environment requires a box to build off of.
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as

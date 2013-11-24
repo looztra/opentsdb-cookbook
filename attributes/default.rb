@@ -19,12 +19,17 @@ default['opentsdb']['tcollector_installdir'] = '/usr/local'
 default['opentsdb']['proxy']['enabled'] = false
 default['opentsdb']['proxy']['http_proxy'] = nil
 default['opentsdb']['proxy']['https_proxy'] = nil
-# default tools
-default['opentsdb']['tools'] = ["nc","htop","sysstat"]
 # packaging tool 
 if platform_family?("rhel")
   default['opentsdb']['packager_recipes'] = ['yum','yum::epel']
+  # default tools
+  default['opentsdb']['tools'] = ["nc","htop","sysstat","autoconf","automake"]
+elsif platform_family?("debian")
+  default['opentsdb']['packager_recipes'] = ['apt']
+  # default tools
+  default['opentsdb']['tools'] = ["netcat","htop","sysstat","autoconf","automake"]
+else
+  default['opentsdb']['packager_recipes'] = nil
 end
-
 
 
