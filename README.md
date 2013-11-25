@@ -58,7 +58,6 @@ Only supports rehl family for the moment. Running on ubuntu should only need som
 # Todo
 
 - provide service scripts for hbase, tcollector and opentsdb
-- support ubuntu
 - cleanup the proxy handling that should no be there I think
 
 # License and Author
