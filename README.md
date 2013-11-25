@@ -11,7 +11,7 @@ The cookbook allow you to choose between the current stable (a.k.a 1.1) and the 
 
 # Requirements
 
-Only supports rehl family for the moment. Running on ubuntu should only need some tweaks (feel free to send a Pull Request!)
+Supports rehl and debian family for the moment.
 
 # Usage
 
