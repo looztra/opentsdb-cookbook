@@ -15,6 +15,13 @@ default['opentsdb']['tsdb_autometrics'] = true
 # tcollector stuff
 default['opentsdb']['tcollector_repo'] = 'https://github.com/OpenTSDB/tcollector.git'
 default['opentsdb']['tcollector_installdir'] = '/usr/local'
+# statuswold stuff
+default['opentsdb']['statuswolf_repo'] = 'https://github.com/box/StatusWolf.git'
+default['opentsdb']['statuswolf_installdir'] = '/var/www'
+default['opentsdb']['statuswolf_database'] = 'statuswolf'
+default['opentsdb']['statuswolf_user'] = 'statuswolf'
+default['opentsdb']['statuswolf_password'] = 'statuswolf'
+default['opentsdb']['statuswolf_auth'] = false
 # proxy stuff
 default['opentsdb']['proxy']['enabled'] = false
 default['opentsdb']['proxy']['http_proxy'] = nil

@@ -2,13 +2,17 @@ name             'opentsdb'
 license          'Apache v2.0'
 description      'Installs/Configures opentsdb'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.0'
+version          '0.3.0'
 maintainer       "Christophe Furmaniak"
 maintainer_email "christophe.furmaniak@gmail.com"
 depends			 "yum"
 depends			 "apt"
 depends			 "ntp"
 depends			 "java"
+depends          "apache2"
+depends			 "php"
+depends			 "mysql"
+depends			 "database"
 recipe 			 "default", "see install recipe"
 recipe 			 "prepare", "Install and setup requirements (ntp, package manager, java)"
 recipe 			 "install", "Install HBase, OpenTSDB and tcollector from source"

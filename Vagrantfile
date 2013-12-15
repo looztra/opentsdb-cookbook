@@ -90,12 +90,21 @@ Vagrant.configure("2") do |config|
       :java => {
         :install_flavor => 'openjdk',
         :jdk_version => '7',
+      },
+      :opentsdb => {
+        :tsdb_branch => "next"
+      },
+      :mysql=> {
+        "server_root_password" => "gnagnagna",
+        "server_repl_password" => "gnagnagna",
+        "server_debian_password" => "gnagnagna"
       }
     }
 
     chef.run_list = [
-        "recipe[opentsdb::install]",
-        "recipe[opentsdb::start]"
+     #   "recipe[opentsdb::install]",
+     #   "recipe[opentsdb::start]"
+          "recipe[opentsdb::install_statuswolf]"
     ]
   end
 end
