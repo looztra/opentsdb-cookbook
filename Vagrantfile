@@ -17,13 +17,13 @@ Vagrant.configure("2") do |config|
   if ENV['OPENTSDB_BASE_BOX_URL']
     config.vm.box_url = ENV['OPENTSDB_BASE_BOX_URL']
   else
-    config.vm.box_url = "https://dl.dropbox.com/u/31081437/Berkshelf-CentOS-6.3-x86_64-minimal.box"
+    config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_chef-11.4.4.box"
   end
   # 
   # possible values if you prefer ubuntu
   #
-  # config.vm.box = "ubuntu12-omnibuschef"
-  # config.vm.box_url = "https://s3.amazonaws.com/gsc-vagrant-boxes/ubuntu-12.04-omnibus-chef.box"
+  # config.vm.box = "opscode-ubuntu-12.04-chef-11"
+  # config.vm.box_url = "https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_chef-11.4.4.box"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -67,8 +67,8 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
-  config.ssh.max_tries = 40
-  config.ssh.timeout   = 120
+  #config.ssh.max_tries = 40
+  #config.ssh.timeout   = 120
 
   # The path to the Berksfile to use with Vagrant Berkshelf
   # config.berkshelf.berksfile_path = "./Berksfile"
