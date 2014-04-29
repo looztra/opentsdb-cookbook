@@ -3,7 +3,7 @@ default['opentsdb']['user'] = 'root'
 # HBase stuff
 default['opentsdb']['hbase_rootdir'] = '/var/spool/tsdhbase'
 default['opentsdb']['hbase_installdir'] = '/usr/local'
-default['opentsdb']['hbase_version'] = '0.94.13'
+default['opentsdb']['hbase_version'] = '0.94.19'
 # OpenTSDB stuff
 default['opentsdb']['tsdb_installdir'] = '/usr/local'
 default['opentsdb']['tsdb_cachedir']='/var/cache/tsdb'
@@ -21,7 +21,7 @@ default['opentsdb']['proxy']['http_proxy'] = nil
 default['opentsdb']['proxy']['https_proxy'] = nil
 # packaging tool 
 if platform_family?("rhel")
-  default['opentsdb']['packager_recipes'] = ['yum','yum::epel']
+  default['opentsdb']['packager_recipes'] = ['yum','yum-epel']
   # default tools
   default['opentsdb']['tools'] = ["nc","htop","sysstat","autoconf","automake"]
 elsif platform_family?("debian")
