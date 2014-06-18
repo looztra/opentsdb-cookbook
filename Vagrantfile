@@ -92,7 +92,7 @@ Vagrant.configure("2") do |config|
     }
 
     chef.run_list = [
-        #"recipe[opentsdb::install]",
+        "recipe[opentsdb::install]",
         "recipe[opentsdb::start]"
     ]
   end
