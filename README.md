@@ -6,19 +6,19 @@ Install and run [OpenTSDB](http://opentsdb.net/ "OpenTSDB") from source.
 
 The typical use case is to be able to easily get the latest version.
 
-The cookbook allow you to choose between the current stable (a.k.a 1.1) and the soon to be released as a RC, the [v2.0 / next branch](http://opentsdb.net/docs/build/html/).
+The cookbook allow you to choose between the current stable (a.k.a 2.0, announced on 2014-05-05) and the bleeding edge, the [next branch](http://opentsdb.net/docs/build/html/).
 
 
 # Requirements
 
-Supports rehl and debian family for the moment.
+Supports rehl and debian family for the moment (you can tweak the env var OPENTSDB_BASE_BOX to specify the basebox to be used by vagrant, defaulting to centos)
 
 # Usage
 
 - [Berkshelf](http://berkshelf.com/) is your friend
     - 'berks install' or
     - use the 'berkshelf vagrant plugin' and the recipes will be fetched during the vagrant provision step
-- This cookbook can install and run opentsdb 1.1 or next/2.0. To choose between the two of them, just set the matching branch value for your node (node['opentsdb']['tsdb_branch'])
+- Since opentsdb 2.0 is officially the latest release available, this cookbook does not allow anymore to install opentsdb 1.1. You can choose between latest stable version by sticking to the master branch or to go for the bleeding edge version hosted in the 'next' branch. To choose between the two of them, just set the matching branch value for your node (node['opentsdb']['tsdb_branch'])
 - A typical chef run would include **opentsdb::install** and **opentsdb::start** recipes that will install and start: *HBASE*, *Opentsdb* and *tcollector* and will start collecting some basic metrics (including opentsdb own metrics)
 
 # Attributes

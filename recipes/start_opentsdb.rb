@@ -20,26 +20,13 @@ include_recipe "opentsdb::init_opentsdb"
 tsdb_home = "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
 
 log "Starting opentsdb if not already running"
-
-case node['opentsdb']['tsdb_branch']
-when 'master'
-	log "Starting opentsdb (master)"
-	execute "starting tsdb (master/v1.x)" do 
-		cwd tsdb_home
-		command "./build/tsdb tsd --port=#{node['opentsdb']['tsdb_port']} --staticroot=build/staticroot --cachedir=#{node['opentsdb']['tsdb_cachedir']} --auto-metric> /var/log/tsdb.log 2>&1 &"
-		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
-	end
-when /^next/
-	log "Starting opentsdb (any next branch)"
-	template "#{tsdb_home}/opentsdb.conf" do
-		source "opentsdb.conf.erb"
-		mode "0644"
-	end
-	execute "starting tsdb (next/v2.x)" do 
-		cwd tsdb_home
-		command "./build/tsdb tsd --config #{tsdb_home}/opentsdb.conf > /var/log/tsdb.log 2>&1 &"
-		not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
-	end
-else
-	log "Unsupported branch value [#{node['opentsdb']['tsdb_branch']}], doing nothing"	
+log "Now even master is a v2.x"
+template "#{tsdb_home}/opentsdb.conf" do
+	source "opentsdb.conf.erb"
+	mode "0644"
+end
+execute "starting tsdb (v2.x)" do 
+	cwd tsdb_home
+	command "./build/tsdb tsd --config #{tsdb_home}/opentsdb.conf > /var/log/tsdb.log 2>&1 &"
+	not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
 end
