@@ -7,7 +7,7 @@ default['opentsdb']['hbase_version'] = '0.94.20'
 # OpenTSDB stuff
 default['opentsdb']['tsdb_installdir'] = '/usr/local'
 default['opentsdb']['tsdb_cachedir']='/var/cache/tsdb'
-default['opentsdb']['tsdb_repo'] = 'git://github.com/OpenTSDB/opentsdb.git'
+default['opentsdb']['tsdb_repo'] = 'https://github.com/OpenTSDB/opentsdb.git'
 default['opentsdb']['tsdb_branch'] = 'master'
 default['opentsdb']['build_from_src'] = true
 default['opentsdb']['tsdb_port'] = 4242
