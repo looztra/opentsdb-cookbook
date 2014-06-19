@@ -2,10 +2,10 @@ name             'opentsdb'
 license          'Apache v2.0'
 description      'Installs/Configures opentsdb'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.0'
+version          '0.3.0'
 maintainer       "Christophe Furmaniak"
 maintainer_email "christophe.furmaniak@gmail.com"
-depends			 "yum"
+depends			 "yum", "2.4.4"
 depends			 "apt"
 depends			 "ntp"
 depends			 "java"
