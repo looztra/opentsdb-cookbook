@@ -20,3 +20,8 @@ template "#{node['opentsdb']['tcollector_installdir']}/tcollector/collectors/0/t
 	source "tsdb_stats.sh.erb"
 	mode "0755"
 end
+
+template "/home/vagrant/start_tcollector.sh" do
+  source "start_tcollector.sh.erb"
+  mode "0755"
+end

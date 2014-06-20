@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo sh -c '<%= node['opentsdb']['tsdb_installdir'] %>/opentsdb/build/tsdb tsd --config <%= node['opentsdb']['tsdb_installdir'] %>/opentsdb/opentsdb.conf > /var/log/tsdb.log 2>&1 &'

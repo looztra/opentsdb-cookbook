@@ -53,3 +53,8 @@ if node['opentsdb']['build_from_src']
 else
 	log 'Skipping the build of OpentTSDB from source'
 end
+
+template "/home/vagrant/start_tsdb.sh" do
+  source "start_tsdb.sh.erb"
+  mode "0755"
+end

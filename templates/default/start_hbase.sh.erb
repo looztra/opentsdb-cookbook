@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo JAVA_HOME=/usr/lib/jvm/java HBASE_HOME=<%= node['opentsdb']['hbase_installdir'] %>/hbase <%= node['opentsdb']['hbase_installdir'] %>/hbase/bin/start-hbase.sh
