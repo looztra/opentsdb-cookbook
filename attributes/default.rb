@@ -15,6 +15,16 @@ default['opentsdb']['tsdb_autometrics'] = true
 # tcollector stuff
 default['opentsdb']['tcollector_repo'] = 'https://github.com/OpenTSDB/tcollector.git'
 default['opentsdb']['tcollector_installdir'] = '/usr/local'
+# elasticsearch stuff (for grafana)
+default['elasticsearch']['cluster']['name'] = 'es_for_grafana'
+# grafana
+default['grafana']['install_flavour']='release'
+default['opentsdb']['grafana_host']= 'localhost'
+default['opentsdb']['tsdb_host']='localhost'
+default['opentsdb']['tsdb_cors_fixed_port']=4243
+default['grafana']['datasources'] = {
+	'opentsdb' => { 'type' => 'opentsdb', 'url' => "'http://'+window.location.hostname+':#{node['opentsdb']['tsdb_cors_fixed_port']}'", 'default' => 'true'},
+}
 # proxy stuff
 default['opentsdb']['proxy']['enabled'] = false
 default['opentsdb']['proxy']['http_proxy'] = nil

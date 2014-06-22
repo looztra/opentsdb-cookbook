@@ -33,10 +33,9 @@ template "#{hbase_home}/conf/hbase-site.xml" do
 	mode "0644"
 end
 
-file "/etc/profile.d/hbase-opentsdb-tcollector.sh" do
+file "/etc/profile.d/hbase.sh" do
   content <<-EOS
     export HBASE_HOME=#{hbase_home}
-    export TSD_HOST=localhost
   EOS
   mode 0755
 end

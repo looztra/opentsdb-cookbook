@@ -2,4 +2,5 @@
 site :opscode
 
 metadata
-cookbook "yum", "2.4.4"
+#cookbook 'grafana', path: '/home/cfurmaniak/workspace/OpenTSDB/grafana-cookbook'
+cookbook 'grafana', git: 'https://github.com/looztra/grafana-cookbook.git', branch: 'grafana-160'

@@ -16,6 +16,13 @@ execute "git clone tcollector" do
 	environment custom_env
 end
 
+file "/etc/profile.d/tcollector.sh" do
+  content <<-EOS
+    export TSD_HOST=localhost
+  EOS
+  mode 0755
+end
+
 template "#{node['opentsdb']['tcollector_installdir']}/tcollector/collectors/0/tsdb_stats.sh" do
 	source "tsdb_stats.sh.erb"
 	mode "0755"
