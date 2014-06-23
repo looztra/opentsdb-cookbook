@@ -1,5 +1,20 @@
 
 log 'Creating OpenTSDB HBase tables if needed'
+log "executing command: ps auxwww | grep 'org.apache.hadoop.hbase.master.HMaster start' | grep -v grep"
+if system("ps auxwww | grep 'org.apache.hadoop.hbase.master.HMaster start' | grep -v grep")
+	log "HBASE seems started"
+else
+	log "HBASE does not seem started"
+end
+
+log "executing command: test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid"
+if system("test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid")
+	log "tsdb HBASE tables does not exist"
+else
+	log "tsdb HBASE tables exist"
+end
+
+
 execute "create OpenTSDB hbase tables" do
 	cwd "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
 	command "./src/create_table.sh"
