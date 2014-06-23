@@ -4,10 +4,10 @@
 
 if shell_out("ps auxwww | grep 'org.apache.hadoop.hbase.master.HMaster start' | grep -v grep | wc -l").stdout.chomp == "1"
 	hbase_is_up=true
-	log "(start_hbase) HBASE seems started"
+	log "HBASE seems started (from start_hbase) "
 else
 	hbase_is_up=false
-	log "(start_hbase) HBASE does not seem started, we will start it"
+	log "HBASE does not seem started, we will start it (from start_hbase) "
 end
 
 execute "start hbase if needed" do

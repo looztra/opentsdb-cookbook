@@ -20,18 +20,6 @@
 
 include_recipe 'opentsdb::prepare'
 
-if node['opentsdb']['proxy']['enabled']
-	log "Setting proxy configuration for git"	
-	custom_env = Hash.new
-	custom_env['http_proxy'] = node['opentsdb']['proxy']['http_proxy']
-	custom_env['https_proxy'] = node['opentsdb']['proxy']['https_proxy']	
-else
-	log "No proxy configuration"
-	custom_env = Hash.new
-end
-
-
-
 directory node['opentsdb']['tsdb_cachedir'] do
 	action :create
 end
@@ -42,13 +30,11 @@ if node['opentsdb']['build_from_src']
 		cwd node['opentsdb']['tsdb_installdir']
 		command "git clone -b #{node['opentsdb']['tsdb_branch']} #{node['opentsdb']['tsdb_repo']}"
 		creates "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
-		environment custom_env
 	end	
 	execute "build opentsdb" do
 		cwd "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
 		command "./build.sh"
 		not_if "test -f #{node['opentsdb']['tsdb_installdir']}/opentsdb/build/tsdb-*.jar"
-		environment custom_env
 	end
 else
 	log 'Skipping the build of OpentTSDB from source'

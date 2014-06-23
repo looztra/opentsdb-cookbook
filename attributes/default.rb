@@ -25,10 +25,6 @@ default['opentsdb']['tsdb_cors_fixed_port']=4243
 default['grafana']['datasources'] = {
 	'opentsdb' => { 'type' => 'opentsdb', 'url' => "'http://'+window.location.hostname+':#{node['opentsdb']['tsdb_cors_fixed_port']}'", 'default' => 'true'},
 }
-# proxy stuff
-default['opentsdb']['proxy']['enabled'] = false
-default['opentsdb']['proxy']['http_proxy'] = nil
-default['opentsdb']['proxy']['https_proxy'] = nil
 # packaging tool 
 if platform_family?("rhel")
   default['opentsdb']['packager_recipes'] = ['yum','yum::epel']

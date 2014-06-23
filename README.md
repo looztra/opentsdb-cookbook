@@ -20,6 +20,7 @@ Supports rehl and debian family for the moment (you can tweak the env var OPENTS
     - use the 'berkshelf vagrant plugin' and the recipes will be fetched during the vagrant provision step
 - Since opentsdb 2.0 is officially the latest release available, this cookbook does not allow anymore to install opentsdb 1.1. You can choose between latest stable version by sticking to the master branch or to go for the bleeding edge version hosted in the 'next' branch. To choose between the two of them, just set the matching branch value for your node (node['opentsdb']['tsdb_branch'])
 - A typical chef run would include **opentsdb::install** and **opentsdb::start** recipes that will install and start: *HBASE*, *Opentsdb* and *tcollector* and will start collecting some basic metrics (including opentsdb own metrics)
+- This cookbook now propose recipes to install [Grafana](http://grafana.org/) through **install_grafana**. You can use **install_elasticsearch** if you don't already have one.
 
 # Attributes
 
@@ -37,10 +38,8 @@ Supports rehl and debian family for the moment (you can tweak the env var OPENTS
 - node['opentsdb']['tsdb_autometrics'] - create new metrics automatically (default: 'true')
 - node['opentsdb']['tcollector_repo'] - the git directory to use for tcollector (default: 'https://github.com/OpenTSDB/tcollector.git')
 - node['opentsdb']['tcollector_installdir'] - the base directory where the tcollector install dir will be put (default: '/usr/local')
-- node['opentsdb']['proxy']['enabled'] - use a proxy (default: 'true')
-- node['opentsdb']['proxy']['http_proxy'] - http_proxy (default: 'nil')
-- node['opentsdb']['proxy']['https_proxy'] - https_proxy (default: 'nil')
 - node['opentsdb']['tools'] - some tools installed by default (default: ["nc","htop","sysstat"])
+- node['elasticsearch']['cluster']['name'] - the ES cluster name that will be used (needed for **install_elasticsearch**, default: 'es_for_grafana')
 
 # Recipes
 
@@ -54,11 +53,12 @@ Supports rehl and debian family for the moment (you can tweak the env var OPENTS
 - recipe **start_hbase**: Start HBase
 - recipe **start_opentsdb**: Start Opentsdb
 - recipe **start_tcollector**: Start tcollector
+- recipe **install_grafana**: Installs grafana
+- recipe **install_elasticsearch**: Installs ES
 
 # Todo
 
 - provide service scripts for hbase, tcollector and opentsdb
-- cleanup the proxy handling that should no be there I think
 
 # License and Author
 

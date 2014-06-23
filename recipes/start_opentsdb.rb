@@ -20,7 +20,6 @@ include_recipe "opentsdb::init_opentsdb"
 tsdb_home = "#{node['opentsdb']['tsdb_installdir']}/opentsdb"
 
 log "Starting opentsdb if not already running"
-log "Now even master is a v2.x"
 template "#{tsdb_home}/opentsdb.conf" do
 	source "opentsdb.conf.erb"
 	mode "0644"
@@ -28,5 +27,5 @@ end
 execute "starting tsdb (v2.x)" do 
 	cwd tsdb_home
 	command "./build/tsdb tsd --config #{tsdb_home}/opentsdb.conf > /var/log/tsdb.log 2>&1 &"
-	not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"	
+	not_if "ps auxwww | grep 'net.opentsdb.tools.TSDMain' | grep -v grep"
 end
