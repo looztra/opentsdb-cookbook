@@ -19,6 +19,7 @@ default['opentsdb']['tcollector_installdir'] = '/usr/local'
 default['elasticsearch']['cluster']['name'] = 'es_for_grafana'
 # grafana
 default['grafana']['install_flavour']='release'
+default['grafana']['nginx']['install_recipe'] = 'default'
 default['opentsdb']['grafana_host']= 'localhost'
 default['opentsdb']['tsdb_host']='localhost'
 default['opentsdb']['tsdb_cors_fixed_port']=4243
