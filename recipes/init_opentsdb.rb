@@ -9,9 +9,9 @@ end
 
 log "executing command: test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid"
 if system("test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid")
-	log "tsdb HBASE tables does not exist"
+	log "(before) tsdb HBASE tables does not exist"
 else
-	log "tsdb HBASE tables exist"
+	log "(before) tsdb HBASE tables exist"
 end
 
 
@@ -21,4 +21,10 @@ execute "create OpenTSDB hbase tables" do
 	only_if "ps auxwww | grep 'org.apache.hadoop.hbase.master.HMaster start' | grep -v grep"
 	not_if "test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid"	
 	environment ({'HBASE_HOME' => "#{node['opentsdb']['hbase_installdir']}/hbase", "COMPRESSION" => "none"})
+end
+
+if system("test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb && test -d #{node['opentsdb']['hbase_rootdir']}/hbase-root/hbase/tsdb-uid")
+	log "(after) tsdb HBASE tables does not exist"
+else
+	log "(after) tsdb HBASE tables exist"
 end
