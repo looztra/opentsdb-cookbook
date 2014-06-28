@@ -16,3 +16,5 @@ bin/*
 
 *.awl
 .kitchen
+.kitchen/
+.kitchen.local.yml
