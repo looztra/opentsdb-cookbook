@@ -6,6 +6,7 @@ version          '0.4.0'
 maintainer       "Christophe Furmaniak"
 maintainer_email "christophe.furmaniak@gmail.com"
 depends			 "yum", ">= 3.0.0"
+depends			 "yum-epel"
 depends			 "apt"
 depends			 "ntp"
 depends			 "java"
