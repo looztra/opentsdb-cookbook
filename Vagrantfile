@@ -12,12 +12,10 @@ Vagrant.configure("2") do |config|
   if ENV['OPENTSDB_BASE_BOX']
     config.vm.box = ENV['OPENTSDB_BASE_BOX']
   else
-    config.vm.box = "opscode-centos-6.4-chef-11"
+    config.vm.box = "chef/centos-6.5"
   end
   if ENV['OPENTSDB_BASE_BOX_URL']
     config.vm.box_url = ENV['OPENTSDB_BASE_BOX_URL']
-  else
-    config.vm.box_url = "https://dl.dropbox.com/u/31081437/Berkshelf-CentOS-6.3-x86_64-minimal.box"
   end
   # 
   # possible values if you prefer ubuntu
